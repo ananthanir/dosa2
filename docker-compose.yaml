@@ -1,0 +1,22 @@
+version: '3.4'
+
+services:
+  api:
+    image: api
+    container_name: api
+    build:
+      context: api
+      dockerfile: ./Dockerfile
+    ports:
+      - "3001:3001"
+
+  ui:
+    image: ui
+    container_name: ui
+    depends_on:
+      - api
+    build:
+      context: ui
+      dockerfile: ./Dockerfile
+    ports:
+      - "3000:3000"
